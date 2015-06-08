@@ -14,43 +14,9 @@ class PublicidadController extends BaseController {
 
 		if(Input::get())
 		{
-			$action;
-
-			if ($profesor->foto!=''){
-				$action='EDIT';
-			}else{
-				$action='NEW';
-			}
-
-			$validation = $this->validateForms(Input::all(),$action);
+			 var_dump(Input::all()); exit();
 
 			
-	    	if ($validation === true)
-			{
-
-				
-				$profesor->nombres				=ucwords(Input::get("nombres"));
-				$profesor->apellidos			=ucwords(Input::get("apellidos"));
-				$profesor->grado_academico_id	=Input::get("grado_academico_id");
-				$profesor->profesion_id			=Input::get("profesion_id");
-				$profesor->universidad_id		=Input::get("universidad_id");
-				$profesor->dni 					=Input::get("dni");
-				$profesor->url_linkedin			=Input::get("url_linkedin");
-				$profesor->url_twiiter			=Input::get("url_twiiter");
-				$profesor->url_sitio_web		=Input::get("url_sitio_web");
-				$profesor->celular				=Input::get("celular");
-				$profesor->sexo 				=Input::get("sexo");
-				$profesor->fecha_nacimiento 	=Input::get("fecha_nacimiento");
-				$profesor->descripcion			=Input::get("descripcion");
-
-				if($profesor->save())
-				{				
-				 	return Redirect::to('profesor/update/'.$id)->with(array('confirm' => 'Se actualizó tus datos correctamente.'));
-				}
-
-			}else{
-				return Redirect::to('profesor/update/'.$id)->withErrors($validation)->withInput();
-			}
 		}
 		else {
 
@@ -58,8 +24,6 @@ class PublicidadController extends BaseController {
 	    	$modalidad 			= Utilitario::listSelect('Modalidad');
 	    	$nivelEnsenanza 	= Utilitario::listSelect('NivelEnsenanza');
 			$tipoMoneda 		= Utilitario::listSelect('TipoMoneda');
-			$departamento 		= Utilitario::listUbigeo(null);
-
 
 	    	$selected = array();
 	    	
@@ -68,7 +32,6 @@ class PublicidadController extends BaseController {
 	    		'materia'		=> $materia, 
 	    		'modalidad'		=> $modalidad,
 	    		'tipoMoneda'	=> $tipoMoneda,
-	    		'departamento'	=> $departamento,
 	    		'profesor'		=> $profesor
 	    	);
 

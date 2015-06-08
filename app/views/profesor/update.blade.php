@@ -26,7 +26,7 @@
       @include('includes.sidebar', array('profesor'=> $listaSelect['profesor']))
       
 
-  {{ Form::open(array('url' => 'profesor/update/'.$listaSelect['profesor']->id, 'files' => true)) }}
+      {{ Form::open(array('url' => 'profesor/update/'.$listaSelect['profesor']->id, 'files' => true)) }}
 
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">

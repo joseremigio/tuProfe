@@ -2,6 +2,8 @@
 
 class Utilitario {
 
+
+
 	static function listSelect($modelo){
 
 		$lista = $modelo::all()->lists('nombre','id');
@@ -9,42 +11,33 @@ class Utilitario {
     	return $combobox;
 	}
 
-	static function listUbigeo($where){
+	static function listUbigeo($query){
 
+
+		$query = Ubigeo::where('distrito', 'LIKE', '%'.$query.'%')->orWhere('provincia', 'LIKE', '%'.$query.'%')->orWhere('departamento', 'LIKE', '%'.$query.'%')->get();
+		$a_json = array();
+		$a_json_row = array();
 		
-		/*$query = Ubigeo::all()->lists('distrito','id');*/
+		foreach($query as $row){
+
+		  $a_json_row = array();
+		  /*$a_json_row[$row->codigo] = ($row->distrito).", ".($row->provincia).", ".($row->departamento);*/
+		  $a_json_row['id'] = $row->codigo;
+		  $a_json_row['value'] = ($row->distrito).", ".($row->provincia).", ".($row->departamento);
+		  array_push($a_json, $a_json_row);
+
+		}
+		 
+		$json = json_encode($a_json);
+
+		return ($json);
+	}
+
+	static function lista() {
+
+			$query = Ubigeo::all()->lists('provincia','codigo');
 		
-	/*	$query = Ubigeo::where('departamento_id','=','01')->distinct()->lists('departamento','id');*/
-		$query = Ubigeo::where('distrito', 'LIKE', '%Barra%')->get()->lists('distrito','codigo');
-
-/*		var_dump($query); exit();
-*/		
-		return $query;
-
-		if (is_null($where)){
-
-			/*$query->distinct()->get(array('departamento_id'));*/
-
-			$query->where('departamento_id','=','01');
-
-		/*	var_dump($query->toSql()); exit();
-*/
 			return $query;
-		}
-
-/*		$keys = ['key1','key2','key3'];
-		
-		 $query->where('search','LIKE','%'.$key.'%');
-
-		foreach($keys as $key)
-		{
-		    $query->where('search','LIKE','%'.$key.'%');
-
-		}
-		
-		$query->take(5);
-		echo $query->toSql();*/
-
 
 	}
 

@@ -44,8 +44,16 @@ Route::post('profesor/update/{id}', 'ProfesorController@update');
 
 Route::get('publicidad/show/{id}', 'PublicidadController@show');
 
-/*Route::get('datosPersonales', function()
-{
-	return  View::make("profesor.formulario");
+Route::post('publicidad/show/{id}', 'PublicidadController@show');
 
-});*/
+
+
+/*Route::post('utilitario/listUbigeo/{query}', function($id)
+{
+    return Utilitario::listUbigeo($id);
+});
+*/
+Route::get('utilitario/listUbigeo/{query}', function($id)
+{
+    return Utilitario::listUbigeo($id);
+});

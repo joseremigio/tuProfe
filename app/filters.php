@@ -88,3 +88,10 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+
+
+App::missing(function($exception)
+{
+	/*return Redirect::to('http://localhost/laravel/public/error/index.html');*/
+    return Response::view('errors.404');
+});

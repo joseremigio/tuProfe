@@ -11,6 +11,11 @@ class Materia extends Eloquent {
                         'created_at',
                         'updated_at');
 
+    public function publicacion() 
+    {
+        return $this->hasMany('Publicacion','materia_id','id'); 
+    }
+
 }
 
 ?>

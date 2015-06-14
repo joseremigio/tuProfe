@@ -8,65 +8,6 @@ class ProfesorController extends BaseController {
 		return View::make('profesor.index')-> with ('profesores',$profesores);
 	}
 
-	public function grabar(){
-
-
-		$file = Input::file("foto");
-
-
-		$validation = $this->validateForms(Input::all(),'NEW');
-
-	    if ($validation === true)
-	    {
-	    	$profesor = new Profesor(array(
-				"nombres"				=>	Input::get("nombres"),
-				"apellidos"				=>	Input::get("apellidos"),
-				"grado_academico_id"	=>	Input::get("grado_academico_id"),
-				"profesion_id"			=>	Input::get("profesion_id"),
-				"universidad_id"		=>	Input::get("universidad_id"),
-				"dni"					=>	Input::get("dni"),
-				"url_linkedin"			=>	Input::get("url_linkedin"),
-				"url_twiiter"			=>	Input::get("url_twiiter"),
-				"url_sitio_web"			=>	Input::get("url_sitio_web"),
-				"celular"				=>	Input::get("celular"),
-				"sexo"					=>	Input::get("sexo"),
-				"foto"					=>	$file->getClientOriginalName(),
-				"descripcion"			=>	Input::get("descripcion")
-			));
-
-
-	        if($profesor->save()){
-	        	//guardamos la imagen en public/imgs con el nombre original
-	        	$file->move("imgs",$file->getClientOriginalName());
-				//redirigimos con un mensaje flash
-				return Redirect::to('datosPersonales')->with(array('confirm' => 'Te has registrado correctamente.'));
-	        }
-	        
-	    }else{
-	        return Redirect::to('datosPersonales')->withErrors($validation)->withInput();
-	    }
-	}
-
-	public function nuevo(){
-
-		return "aca";
-		
-    	$gradoAcademico 	= Utilitario::listSelect('GradoAcademico');
-    	$profesion 			= Utilitario::listSelect('Profesion');
-    	$universidad 		= Utilitario::listSelect('Universidad');
-
-    	$selected = array();
-    	
-    	$listaSelect = array(
-    		'profesion'		=> $profesion, 
-    		'gradoAcademico'=> $gradoAcademico, 
-    		'universidad'	=> $universidad
-    	);
-
-    	return  View::make("datosPersonales",  compact('listaSelect', 'selected'));
-
-	}
-
 	public function update($id){
 
 
@@ -77,9 +18,10 @@ class ProfesorController extends BaseController {
 
     	if (is_null($profesor)){
 
-    		return Redirect::to('profesor.formulario');
+    		return Redirect::to('profesor.formulario'); // corregir
     	}
 
+    	//Si se va editar
 		if(Input::get())
 		{
 			$action;
@@ -157,6 +99,13 @@ class ProfesorController extends BaseController {
 		}
 	}
 
+	public function show($profesor_id){
+
+		$profesor 			= Profesor::find($profesor_id);
+
+		return View::make("home.profile")->with('profesor',$profesor);
+	}
+
 	private function validateForms($inputs = array(), $action){
  
 		$rules = array(
@@ -168,7 +117,7 @@ class ProfesorController extends BaseController {
 			'url_linkedin'  		=> 'required|min:1|max:200',
 			'url_twiiter'  			=> 'required|min:1|max:200',
 			'url_sitio_web'  		=> 'required|min:1|max:200',
-			'celular'  				=> 'required|min:9|max:9',
+			'celular'  				=> 'required|min:9|max:12',
 			'sexo'     				=> 'required',
 			'foto'     				=>  $action==='NEW'?'required':'',
 			'descripcion'  			=> 'required|min:2|max:180'

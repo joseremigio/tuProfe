@@ -12,6 +12,11 @@ class TipoMoneda extends Eloquent {
                         'created_at',
                         'updated_at');
 
+    public function publicacion() 
+    {
+        return $this->hasMany('Publicacion','tipo_moneda_id','id'); 
+    }
+
 }
 
 ?>

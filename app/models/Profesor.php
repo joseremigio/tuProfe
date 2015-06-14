@@ -20,6 +20,7 @@ class Profesor extends Eloquent {
                         'sexo',
                         'fecha_nacimiento',
                         'foto',
+                        'niveles_materias',
                         'estado',
                         'created_at',
                         'updated_at');
@@ -63,6 +64,12 @@ class Profesor extends Eloquent {
     { 
         return $this->belongsTo('Profesion'); 
     }
+
+    public function publicacion() 
+    {
+        return $this->hasMany('Publicacion','profesor_id','id'); 
+    }
+
 /*
     public function usuario() 
     {

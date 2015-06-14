@@ -30,7 +30,7 @@
 
             @if (strlen($profesor->nombres)>0)
             <li>
-                <a href="{{ url('/publicidad/show/'.$profesor->id)}}">
+                <a href="{{ url('/publicacion/show/'.$profesor->id)}}">
                 <i class="fa fa-files-o" ></i> <span>Mis Publicaciones</span>
                 </a>
             </li>

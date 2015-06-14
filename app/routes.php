@@ -11,15 +11,12 @@
 |
 */
 
-Route::get('/', function()
-{
+Route::get('/', 						'HomeController@showWelcome');
 
-/*	$test = new Test();
-	$test->nombre="123j";
-	$test->save();*/
+Route::post('home/publicaciones/', 		'HomeController@showWelcome');
 
-	return "se grabo";
-});
+Route::get('home/perfil/{profesor_id}', 'ProfesorController@show');
+
 
 
 
@@ -34,18 +31,21 @@ Route::post("datosPersonales", 'ProfesorController@grabar'); */
 /*Route::get("editarDatosPersonales", 'ProfesorController@editar'); 
 */
 
-Route::get('usuario/update/{id}', 'UsuarioController@update');
+Route::get('usuario/update/{id}', 		'UsuarioController@update');
 
-Route::post('usuario/update/{id}', 'UsuarioController@update');
+Route::post('usuario/update/{id}', 		'UsuarioController@update');
 
-Route::get('profesor/update/{id}', 'ProfesorController@update');
+Route::get('profesor/update/{id}', 		'ProfesorController@update');
 
-Route::post('profesor/update/{id}', 'ProfesorController@update');
+Route::post('profesor/update/{id}', 	'ProfesorController@update');
 
-Route::get('publicidad/show/{id}', 'PublicidadController@show');
+Route::get('publicacion/show/{id}', 	'PublicacionController@show'); // id = profesor_id
 
-Route::post('publicidad/show/{id}', 'PublicidadController@show');
+Route::post('publicacion/show/{id}', 	'PublicacionController@show'); // id = profesor_id
 
+Route::get('publicacion/delete/{id}', 	'PublicacionController@delete'); // id = id
+
+Route::post('publicacion/delete/{id}', 	'PublicacionController@delete'); // id = id
 
 
 /*Route::post('utilitario/listUbigeo/{query}', function($id)
@@ -57,3 +57,15 @@ Route::get('utilitario/listUbigeo/{query}', function($id)
 {
     return Utilitario::listUbigeo($id);
 });
+
+// Display all SQL executed in Eloquent
+Event::listen('illuminate.query', function($query)
+{
+    Log::info("Consulta: ".$query);
+});
+
+/*
+App::missing(function($exception)
+{
+      return Response::view('errors.missing', array('http://localhost/laravel/public/error/index.html' => Request::url()), 404);
+});*/

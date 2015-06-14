@@ -10,13 +10,17 @@ class Ubigeo extends Eloquent {
                         'departamento_id',
                         'provincia_id',
                         'distrito_id',
-                        'codigo',
                         'pais',
                         'departamento',
                         'provincia',
                         'distrito',
                         'created_at',
                         'updated_at');
+
+    public function publicacion() 
+    {
+        return $this->hasMany('Publicacion','ubigeo_id','id'); 
+    }
 }
 
 ?>

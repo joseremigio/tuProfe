@@ -9,7 +9,13 @@ class Modalidad extends Eloquent {
                         'nombre',
                         'estado',
                         'created_at',
-                        'updated_at');
+                        'updated_at'
+    );
+
+    public function publicacion() 
+    {
+        return $this->hasMany('Publicacion','modalidad_id','id'); 
+    }
 
 }
 

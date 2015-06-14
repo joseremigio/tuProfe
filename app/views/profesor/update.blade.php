@@ -157,7 +157,14 @@
                     <div class="form-group">
 
                       {{ Form::label('celular', 'Celular') }}
-                      {{ Form::text('celular',Input::old('celular') ? Input::old('celular') : $listaSelect['profesor']->celular,array('class' => 'form-control','placeholder' => 'Mi número es...')) }}
+                      
+                      <div class="input-group">
+                          <div class="input-group-addon">
+                            <i class="fa fa-phone"></i>
+                          </div>
+                          {{ Form::text('celular',Input::old('celular') ? Input::old('celular') : $listaSelect['profesor']->celular,array('class' => 'form-control', 'data-inputmask'=>'"mask": "999-999-999"', 'data-mask')) }}
+
+                      </div>
 
                       {{ Form::label('url_linkedin', 'LinkedIn') }}
                       {{ Form::text('url_linkedin', Input::old('url_linkedin') ? Input::old('url_linkedin') : $listaSelect['profesor']->url_linkedin, array('class' => 'form-control','placeholder' => 'wwww.ejemplo.com')) }}

@@ -55,27 +55,42 @@
           <div class="profile-sidebar">
             <!-- SIDEBAR USERPIC -->
             <div class="profile-userpic">
-              <img src="{{ asset(strlen($profesor->foto)>0? '/imgs/'.$profesor->foto:'/imgs/default.jpg')}}" class="img-responsive" alt="">
+              <img src="{{ asset(strlen($publicacion->profesor->foto)>0? '/imgs/'.$publicacion->profesor->foto:'/imgs/default.jpg')}}" class="img-responsive" alt="">
             </div>
             <!-- END SIDEBAR USERPIC -->
             <!-- SIDEBAR USER TITLE -->
             <div class="profile-usertitle">
               <div class="profile-usertitle-name">
-                {{$profesor->nombres.', '.$profesor->apellidos}}
+                {{$publicacion->profesor->nombres.', '.$publicacion->profesor->apellidos}}
               </div>
+              <br/>
               <div class="profile-usertitle-job">
-                {{$profesor->gradoAcademico->nombre}}
+                {{$publicacion->profesor->gradoAcademico->nombre}}
               </div>
+              <br/>
+              <h2>{{$publicacion->tipoMoneda->simbolo.' '.$publicacion->cobro_hora}}</h2>
+              <br/>
+
             </div>
             <!-- END SIDEBAR USER TITLE -->
-            <!-- SIDEBAR BUTTONS -->
-            <div class="profile-userbuttons">
-              <button type="button" class="btn btn-success btn-sm">Follow</button>
-              <button type="button" class="btn btn-danger btn-sm">Message</button>
-            </div>
-            <!-- END SIDEBAR BUTTONS -->
+           
             <!-- SIDEBAR MENU -->
-            <div class="profile-usermenu">
+            <div class="team-member">
+
+                <div class="redes-sociales">
+
+                                    <ul class="list-inline social-buttons">
+                                        <li><a href="#"><i class="fa fa-twitter"></i></a>
+                                        </li>
+                                        <li><a href="#"><i class="fa fa-facebook"></i></a>
+                                        </li>
+                                        <li><a href="{{$publicacion->profesor->url_linkedin}}" target="_blank"><i class="fa fa-linkedin"></i></a>
+                                        </li>
+                                    </ul>
+                </div>
+
+            </div>
+<!--             <div class="profile-usermenu">
               <ul class="nav">
                 <li class="active">
                   <a href="#">
@@ -98,20 +113,48 @@
                   Help </a>
                 </li>
               </ul>
-            </div>
+            </div> -->
             <!-- END MENU -->
           </div>
         </div>
         <div class="col-md-9">
                 <div class="profile-content">
-                 <div class="info-card-details">
-                    <p>{{$profesor->descripcion}}</p>
-                 </div> 
-                
+                      <div class="profile-usertitle">
+                        <h3>{{ $publicacion->materia->nombre }}</h3>
+                      </div>
+                      <br/>
 
-                {{ explode(";",$profesor->niveles_materias)[0]}}
-                
-                {{ explode(";",$profesor->niveles_materias)[1]}}
+                      <h4>Enseño a:</h4>
+                      {{ explode(";",$publicacion->profesor->niveles_materias)[0] }}
+                      <br/>
+                      <h4>Los Cursos de:</h4>
+
+                      @foreach ( explode(",",(explode(";",$publicacion->profesor->niveles_materias)[1])) as $item)
+                          
+                          <a href="{{ url('/home/perfil/'.explode('|',$item)[0]) }}">{{ explode("|",$item)[1] }}  </a>
+
+                      @endforeach
+
+
+                      
+                      
+                      <br/>
+                      <h4>En la Modalidad de:</h4>
+                      {{ $publicacion->modalidad->nombre }}
+                      <br/>
+                      <h4>Algo más sobre mi:</h4>
+                      <div class="info-card-details">
+                        <p>{{ $publicacion->profesor->descripcion }}</p>
+                      </div>
+
+                      <div class="profile-userbuttons">
+                          <button type="button" class="btn btn-success btn-sm">Solicitar Clase</button>
+                          <button type="button" class="btn btn-danger btn-sm">Enviar Mensaje</button>
+                      </div>
+
+                      <div class="fb-comments" data-href="{{ url('/home/perfil/'.$publicacion->id) }}" data-numposts="3" data-width="700"></div>
+
+
                 </div>
         </div>
       </div>
@@ -129,6 +172,24 @@
 
     <!-- Portfolio Modals -->
     <!-- Use the modals below to showcase details about your portfolio projects! -->
+
+    <script>
+        (function(d, s, id) {
+        
+              var js, fjs = d.getElementsByTagName(s)[0];
+              
+              if (d.getElementById(id)) return;
+              
+              js = d.createElement(s); js.id = id;
+              
+              js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.3&appId=475855265916218";
+              
+              fjs.parentNode.insertBefore(js, fjs);
+            }
+            (document, 'script', 'facebook-jssdk')
+        );
+
+    </script>
 
 
 

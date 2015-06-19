@@ -99,12 +99,6 @@ class ProfesorController extends BaseController {
 		}
 	}
 
-	public function show($profesor_id){
-
-		$profesor 			= Profesor::find($profesor_id);
-
-		return View::make("home.profile")->with('profesor',$profesor);
-	}
 
 	private function validateForms($inputs = array(), $action){
  
@@ -120,7 +114,7 @@ class ProfesorController extends BaseController {
 			'celular'  				=> 'required|min:9|max:12',
 			'sexo'     				=> 'required',
 			'foto'     				=>  $action==='NEW'?'required':'',
-			'descripcion'  			=> 'required|min:2|max:180'
+			'descripcion'  			=> 'required|min:2|max:490'
 	    );
 	    
 	    $messages = array(

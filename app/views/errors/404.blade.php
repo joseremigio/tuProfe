@@ -36,10 +36,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
     <!-- Home CSS -->
-    <link href="{{ asset('app/css/home.css') }}" rel="stylesheet">
 
     <!-- Ionicons -->
-    <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
 
 </head>
 <body>
@@ -68,19 +66,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <script src="{{ asset('/home/js/classie.js') }}"></script>
     <script src="{{ asset('/home/js/cbpAnimatedHeader.js') }}"></script>
 
-    <!-- Contact Form JavaScript -->
-    <script src="{{ asset('/home/js/jqBootstrapValidation.js') }}"></script>
-    <script src="{{ asset('/home/js/contact_me.js') }}"></script>
-
     <!-- Custom Theme JavaScript -->
     <script src="{{ asset('/home/js/agency.js') }}"></script>
 
-    <!-- JS de validaciones de home.index-->
-    <script src="{{ asset('/app/js/home.js') }}"></script>
 
-    <!--typeahead-->
-    <script src="{{ asset('/plugins/typeahead/bootstrap.js') }}"></script>
-    <script src="http://underscorejs.org/underscore-min.js"></script>
 
 </div>
 </body>

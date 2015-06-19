@@ -187,7 +187,7 @@
                 <div class="box-body">
 
                     {{ Form::label('descripcion', 'Descripción') }}
-                    {{ Form::textarea ('descripcion', $listaSelect['profesor']->descripcion, array('class' => 'form-control','rows'=>'3')) }}
+                    {{ Form::textarea ('descripcion', $listaSelect['profesor']->descripcion, array('class' => 'form-control','rows'=>'5')) }}
 
                 </div><!-- /.box-body -->
               </div><!-- /.box -->

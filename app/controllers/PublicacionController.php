@@ -69,8 +69,11 @@ class PublicacionController extends BaseController {
 
 	private function actualizarNivelesYMaterias($listPublicacion, $profesor){
 
+		$ids='';
 		$niveles ='';
 		$materias='';
+		$modalidades='';
+
 
 		foreach ($listPublicacion as $publicacion) {
 			
@@ -88,21 +91,36 @@ class PublicacionController extends BaseController {
 			}
 			
 
-			$materia =  $publicacion->materia->nombre;
+			$materia 	= $publicacion->materia->nombre;
+			$id 		= $publicacion->id;
 
 			if ($materias===''){
 				
-				$materias = $materia;
+				$materias = $id.'|'.$materia;
 			}
 			else {
 				
 				if (strpos($materias, $materia)===false) {
-					$materias = $materias.', '.$materia;
+					$materias = $materias.', '.$id.'|'.$materia;
 				}
 			}
+
+			$modalidad =  $publicacion->modalidad->nombre;
+
+			if ($modalidades===''){
+				
+				$modalidades = $modalidad;
+			}
+			else {
+				
+				if (strpos($modalidades, $modalidad)===false) {
+					$modalidades = $modalidades.', '.$modalidad;
+				}
+			}
+
 		}
 
-		$niveles_materias = $niveles.';'.$materias;
+		$niveles_materias = $niveles.';'.$materias.';'.$modalidades;
 
 		if (strcmp($niveles_materias,$profesor ->niveles_materias)!=0){
 			$profesor->niveles_materias = $niveles_materias;
@@ -128,6 +146,12 @@ class PublicacionController extends BaseController {
 		$publicacion->delete();
 
 		return Redirect::to('publicacion/show/'.$publicacion->profesor_id)->withErrors("La Publicación se elimino satisfactoriamente.")->withInput();
+	}
+
+	public function showPublicacion($id){
+
+		$publicacion 	= Publicacion::find($id);
+		return View::make("home.profile")->with('publicacion',$publicacion);
 	}
 
 }	

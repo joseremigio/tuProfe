@@ -3,7 +3,7 @@
  * Code licensed under the Apache License v2.0.
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
-
+ 
 body {
     overflow-x: hidden;
     font-family: "Roboto Slab","Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -51,7 +51,7 @@ h3,
 h4,
 h5,
 h6 {
-    text-transform: uppercase;
+    text-transform: initial;
     font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
     font-weight: 700;
 }
@@ -280,8 +280,8 @@ header .intro-text {
 }
 
 header .intro-text .intro-lead-in {
-    margin-left:100px;
-    margin-right:100px;
+    margin-left:130px;
+    margin-right:130px;
     margin-bottom: 25px;
     font-family: "Droid Serif","Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 22px;

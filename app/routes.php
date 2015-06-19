@@ -15,7 +15,7 @@ Route::get('/', 						'HomeController@showWelcome');
 
 Route::post('home/publicaciones/', 		'HomeController@showWelcome');
 
-Route::get('home/perfil/{profesor_id}', 'ProfesorController@show');
+Route::get('home/perfil/{id}', 			'PublicacionController@showPublicacion');
 
 
 

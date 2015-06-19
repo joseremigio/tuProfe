@@ -5,7 +5,7 @@ Licensed under MIT
 ***/
   
 body {
-  background: #F1F3FA;
+  background: #f7f7f7;
 }
 
 /* Profile container */
@@ -23,11 +23,12 @@ body {
 .profile-userpic img {
   float: none;
   margin: 0 auto;
-  width: 50%;
+  width: 80%;
   height: 50%;
   -webkit-border-radius: 50% !important;
   -moz-border-radius: 50% !important;
   border-radius: 50% !important;
+  border: #fec503 2px solid;
 }
 
 .profile-usertitle {
@@ -36,16 +37,16 @@ body {
 }
 
 .profile-usertitle-name {
-  color: #5a7391;
-  font-size: 16px;
+  color: #fec503;
+  font-size: 20px;
   font-weight: 600;
   margin-bottom: 7px;
 }
 
 .profile-usertitle-job {
   text-transform: uppercase;
-  color: #5b9bd1;
-  font-size: 12px;
+  color: #fec503;
+  font-size: 16px;
   font-weight: 600;
   margin-bottom: 15px;
 }
@@ -56,11 +57,13 @@ body {
 }
 
 .profile-userbuttons .btn {
-  text-transform: uppercase;
-  font-size: 11px;
+  text-transform: initial;
+  font-size: 16px;
   font-weight: 600;
-  padding: 6px 15px;
+  padding: 15px 50px;
   margin-right: 5px;
+  margin-top: 10px;
+  margin-bottom: 15px;
 }
 
 .profile-userbuttons .btn:last-child {
@@ -123,4 +126,5 @@ body {
     padding: 0 15px;
     background: rgb(255, 255, 255);
     text-align: center;
-  }
+    margin-bottom: 30px;
+}

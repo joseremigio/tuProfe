@@ -18,7 +18,7 @@ class HomeController extends BaseController {
 	public function showWelcome()
 	{
 
-		$materia 			= Utilitario::listSelect('Materia');
+		$materias 			= Utilitario::listSelect('Materia');
 			    	/*$modalidad 			= Utilitario::listSelect('Modalidad');
 			    	$nivelEnsenanza 	= Utilitario::listSelect('NivelEnsenanza');*/
 					
@@ -28,16 +28,18 @@ class HomeController extends BaseController {
 
 		if(Input::get())
 		{
+			$materia_id		 	= Input::get("materia_id");
+			$nivelEnsenanza 	= Utilitario::listSelect('NivelEnsenanza');
 
-			$listPublicacion =  $this->listPublicacion(Input::get("ubigeo"));
-			$materia_id		 = Input::get("materia_id");
-/*			var_dump($materia[1])->getvalue; exit();	
-			$materia_nombre	 = $materia[2]->nombre;*/
+			$listPublicacion 	= $this->listPublicacion(Input::get("ubigeo"), $materia_id);
+			
+		/*	$materia 		 = Materia::find($materia_id);*/
 
 			$listaSelect = array(
 						'listPublicacion'	=> $listPublicacion, 
-						'materia'			=> $materia,
-						'materia_id'		=> $materia_id
+						'materias'			=> $materias,
+						'materia_id'		=> $materia_id,
+						'nivelEnsenanza'	=> $nivelEnsenanza
 			);
 
 			
@@ -49,7 +51,7 @@ class HomeController extends BaseController {
 
 			$listaSelect = array(
 			    		/*'nivelEnsenanza'	=> $nivelEnsenanza, */
-			'materia'			=> $materia
+			'materias'			=> $materias
 			    	/*	'modalidad'			=> $modalidad,
 			    		'tipoMoneda'		=> $tipoMoneda,
 			    		'listPublicacion'	=> $listPublicacion,
@@ -61,28 +63,15 @@ class HomeController extends BaseController {
 		
 	}
 
-	private function listPublicacion($ubigeo_id){
+	private function listPublicacion($ubigeo_id, $materia_id){
 
-		/*$ubigeo_id 			= Input::get("ubigeo");
-		$materia_id			= Input::get("materia_id");*/
-
-		/*$listPublicacion 	= Publicacion::where(function ($query) {
-		    $query->where('ubigeo_id', '=', Input::get("ubigeo"))
-		          ->orWhere('materia_id', '=', Input::get("materia_id"));
-		})->get();*/
-
-		$listPublicacion 	= Publicacion::where('ubigeo_id', '=', $ubigeo_id)->get();
+		if (empty($ubigeo_id))
+		{
+			$listPublicacion 	= Publicacion::where('ubigeo_id', 'LIKE', '%0114%')->where('materia_id', '=', $materia_id)->get();
+		} else {
+			$listPublicacion 	= Publicacion::where('ubigeo_id', '=', $ubigeo_id)->where('materia_id', '=', $materia_id)->get();
+		}
 
 		return $listPublicacion;
 	}
-
-
-	private function showPublicaciones(){
-
-
-
-		
-
-	}
-
 }

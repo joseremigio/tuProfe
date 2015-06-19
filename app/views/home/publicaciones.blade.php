@@ -48,29 +48,44 @@
     <section id="team" class="bg-light-gray">
         <div class="container">
             <div class="row">
+
                 <div class="col-lg-12 text-center">
-                    <h3 class="section-heading">{{"Profesores particulares de ".$listaSelect['materia'][$listaSelect['materia_id']]}}</h3>
-                    <!-- <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3> -->
+                    <h3 class="section-heading">{{"Profesores particulares de ".$listaSelect['materias'][$listaSelect['materia_id']]}}</h3>
+                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
                 </div>
-                <div  class="materia">
-                            {{ Form::select('materia_id', $listaSelect['materia'], '1', array('class' => 'form-control')) }}
-                </div>
-                <div  class="ubigeo">                                
-                            <input
-                                                id="distrito",
-                                                type="text"
-                                                class="form-control typeahead"
-                                                name="distrito",
-                                                placeholder="Busca por Distrito..."
-                                                autocomplete="off"
-                                                data-provide="typeahead"
-                                                style ="width:100%"
-                            />
-                </div>
+                <div class="intro-lead-in">
+
+                        <div  class="materia2">
+                            {{ Form::select('materia_id', $listaSelect['materias'], $listaSelect['materia_id'], array('class' => 'form-control')) }}
+                        </div>
+
+                        <div  class="nivelEnsenanza2">
+                            {{ Form::select('nivel_ensenanza_id', $listaSelect['nivelEnsenanza'], '', array('class' => 'form-control')) }}
+                        </div>
+
+                        <div  class="ubigeo2">                                
+                                    <input
+                                                        id="distrito",
+                                                        type="text"
+                                                        class="form-control typeahead"
+                                                        name="distrito",
+                                                        placeholder="Busca por Distrito..."
+                                                        autocomplete="off"
+                                                        data-provide="typeahead"
+                                                        style ="width:100%"
+                                    />
+                        </div>
+                                
                         
-                <input type="hidden" class="span1" name="ubigeo" id="ubigeo" value="" />
+                        <input type="hidden" class="span1" name="ubigeo" id="ubigeo" value="" />
+                
+                        <div class="tar">
+                                <input type="submit" value="Buscar" class="page-scroll btn btn-xl " style="margin-top: 10px;"/>
+                        </div>
 
-
+                </div>
+                
+                
             </div>
             <div class="row">
                 @foreach ($listaSelect['listPublicacion'] as $publicacion)
@@ -86,7 +101,7 @@
                             <h5>{{$publicacion->tipoMoneda->simbolo.' '.$publicacion->cobro_hora}}</h5>
                             
 
-                            <a href="{{ url('/home/perfil/'.$publicacion->profesor_id) }}" class="btn btn-primary">Ver Perfil</a>
+                            <a href="{{ url('/home/perfil/'.$publicacion->id) }}" class="btn btn-primary" target="_blank">Ver Perfil</a>
 
                             <div class="redes-sociales">
 

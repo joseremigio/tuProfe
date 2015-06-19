@@ -54,10 +54,35 @@
 .materia{
     float:left; 
     width:30%;
+    margin-bottom: 40px;
 }
+
+.nivelEnsenanza
+{
+    float:left; 
+    width:20%;
+}
+
 .ubigeo{
     float:left; 
     width:70%;
+}
+
+.materia2{
+    float:left; 
+    width:20%;
+    margin-bottom: 40px;
+}
+
+.nivelEnsenanza2
+{
+    float:left; 
+    width:20%;
+}
+
+.ubigeo2{
+    float:left; 
+    width:60%;
 }
 
 
@@ -71,8 +96,6 @@
 }
 
 .tar {
-  margin-top: 70px;
-  margin-right:100px;
   text-align: right!important;
 }
 

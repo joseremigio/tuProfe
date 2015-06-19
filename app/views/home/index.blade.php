@@ -54,7 +54,7 @@
                 <h4>Busca, aprende y enseña</h4>
                 <div class="intro-lead-in">
                         <div  class="materia">
-                            {{ Form::select('materia_id', $listaSelect['materia'], '1', array('class' => 'form-control')) }}
+                            {{ Form::select('materia_id', $listaSelect['materias'], '1', array('class' => 'form-control')) }}
                         </div>
                         <div  class="ubigeo">                                
                             <input
@@ -71,16 +71,12 @@
                         
                         <input type="hidden" class="span1" name="ubigeo" id="ubigeo" value="" />
 
+                        <div class="tar">
+                                <input type="submit" value="Buscar" class="page-scroll btn btn-xl " style="margin-top: 10px;"/>
+                        </div>
+
                 </div>
-                <div class="tar">
-                            <a href="{{ url('/home/publicaciones/') }}" class="page-scroll btn btn-xl">Buscar   
-                                <span class="size-32">
-                                  <i class="icon ion-search"></i>
-                                </span>
-                            </a>
-                                
-                </div>
-                {{ Form::submit('Agregar', array("class" => "btn btn-primary")) }}
+                               
                 <div class="intro-heading">
 
                 </div>

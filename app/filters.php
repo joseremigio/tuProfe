@@ -92,6 +92,5 @@ Route::filter('csrf', function()
 
 App::missing(function($exception)
 {
-	/*return Redirect::to('http://localhost/laravel/public/error/index.html');*/
     return Response::view('errors.404');
 });
